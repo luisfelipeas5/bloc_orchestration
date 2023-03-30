@@ -19,7 +19,7 @@ class IceCreamBloc extends Bloc<IceCreamEvent, IceCreamState> {
     IceCreamLoadEvent event,
     Emitter<IceCreamState> emit,
   ) async {
-    await Future.delayed(const Duration(seconds: 1));
+    await Future.delayed(const Duration(seconds: 2));
     emit(
       state.copyWith(items: [
         ...state.items,
