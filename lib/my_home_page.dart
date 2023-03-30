@@ -3,6 +3,7 @@ import 'package:bloc_orchestration/juice_bloc/juice_bloc.dart';
 import 'package:bloc_orchestration/menu_item_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -57,6 +58,12 @@ class _MyHomePageState extends State<MyHomePage> {
       listener: (context, state) {
         //TODO
       },
+    );
+  }
+
+  void _showEmptyWarningToast() {
+    Fluttertoast.showToast(
+      msg: "Empty menu!",
     );
   }
 }
