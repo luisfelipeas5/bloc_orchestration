@@ -18,13 +18,14 @@ class JuiceBloc extends Bloc<JuiceEvent, JuiceState> {
   FutureOr<void> _onLoad(
     JuiceLoadEvent event,
     Emitter<JuiceState> emit,
-  ) {
+  ) async {
+    await Future.delayed(const Duration(seconds: 1));
     emit(
       state.copyWith(items: [
         ...state.items,
-        MenuItem(name: "Suco de laranja", price: 5),
-        MenuItem(name: "Suco de morango", price: 5),
-        MenuItem(name: "Suco de laranja e morango", price: 7),
+        // MenuItem(name: "Suco de laranja", price: 5),
+        // MenuItem(name: "Suco de morango", price: 5),
+        // MenuItem(name: "Suco de laranja e morango", price: 7),
       ]),
     );
   }
