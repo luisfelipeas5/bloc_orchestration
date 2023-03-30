@@ -18,6 +18,8 @@ class _MyHomePageState extends State<MyHomePage> {
   final _juiceBloc = JuiceBloc();
   final _iceCreamBloc = IceCreamBloc();
 
+  int? _loadEventCount;
+
   @override
   void initState() {
     super.initState();
@@ -25,6 +27,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _loadMenuItems() async {
+    _loadEventCount = 0;
     _juiceBloc.add(JuiceLoadEvent());
     _iceCreamBloc.add(IceCreamLoadEvent());
   }
@@ -37,7 +40,8 @@ class _MyHomePageState extends State<MyHomePage> {
         create: (context) => _iceCreamBloc,
         child: MultiBlocListener(
           listeners: [
-            _showEmptyWarningToastListener,
+            _showEmptyWarningToastByJuiceStateListener,
+            _showEmptyWarningToastByIceCreamStateListener,
           ],
           child: SafeArea(
             child: Scaffold(
@@ -53,12 +57,32 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   //Show a toast when both juice and ice cream list are empty
-  BlocListener get _showEmptyWarningToastListener {
+  BlocListener get _showEmptyWarningToastByJuiceStateListener {
     return BlocListener<JuiceBloc, JuiceState>(
       listener: (context, state) {
-        //TODO
+        _onStateReceived();
       },
     );
+  }
+
+  BlocListener get _showEmptyWarningToastByIceCreamStateListener {
+    return BlocListener<IceCreamBloc, IceCreamState>(
+      listener: (context, state) {
+        _onStateReceived();
+      },
+    );
+  }
+
+  void _onStateReceived() {
+    _loadEventCount = (_loadEventCount ?? 0) + 1;
+    if ((_loadEventCount ?? 0) < 2) return;
+
+    final emptyJuice = _juiceBloc.state.items.isEmpty;
+    final emptyIceCream = _iceCreamBloc.state.items.isEmpty;
+    if (emptyJuice && emptyIceCream) {
+      _showEmptyWarningToast();
+    }
+    _loadEventCount = 0;
   }
 
   void _showEmptyWarningToast() {
