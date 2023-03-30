@@ -28,5 +28,6 @@ class IceCreamBloc extends Bloc<IceCreamEvent, IceCreamState> {
         // MenuItem(name: "Sorvete de chocolate", price: 7),
       ]),
     );
+    event.consumptionCompleter.complete();
   }
 }

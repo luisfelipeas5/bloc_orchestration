@@ -28,5 +28,6 @@ class JuiceBloc extends Bloc<JuiceEvent, JuiceState> {
         // MenuItem(name: "Suco de laranja e morango", price: 7),
       ]),
     );
+    event.consumptionCompleter.complete();
   }
 }
