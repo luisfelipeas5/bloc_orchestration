@@ -1,16 +1,10 @@
 # bloc_orchestration
 
-A new Flutter project.
+Repositório dedicado a resolver problemas de orquestramento de BLoCs.
 
-## Getting Started
+## Qual é o problema?
+Supondo que, para uma única página, criamos dois BLoCs para cuidar da sua lógica. Nesse pequeno exemplo, não haveria necessidade de dividir a lógica em mais de um BLoC, mas aqui, para fins de exercício simulamos uma situação em que uma página tenha tanta responsabilidade que faça sentido criar mais de um BLoC para ela.
 
-This project is a starting point for a Flutter application.
+No exemplo, criamos um app que exibe itens do menu de uma loja de derivados de frutas dinamicamente. Nesse caso específico, ocorreu algum erro ao trazer os itens da fonte de dados que não foi possível carregar as seções do cardápio: a seção de sucos e de sorvete. Cada seção, carregada por seu BLoC.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Nessa situação, queremos solucionar o seguinte problema: como fazemos com que um toast seja exibido dizendo que não há itens no cardápio quando nenhuma das duas seções tem itens?
