@@ -37,7 +37,7 @@ class _MyHomePageState extends State<MyHomePage> {
     ));
     await juiceLoadCompleter.future;
     await iceCreamLoadCompleter.future;
-    _showEmptyWarningToastIfEmpty();
+    _showEmptyWarningToast();
   }
 
   @override
@@ -55,14 +55,6 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
       ),
-    );
-  }
-
-  //Show a toast when both juice and ice cream list are empty
-  void _showEmptyWarningToastIfEmpty() {
-    Fluttertoast.showToast(
-      msg: "Empty menu!",
-      toastLength: Toast.LENGTH_SHORT,
     );
   }
 
