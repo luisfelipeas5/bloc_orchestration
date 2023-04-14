@@ -1,13 +1,14 @@
 import 'dart:async';
 
 import 'package:bloc_orchestration/menu_item.dart';
+import 'package:bloc_orchestration/base_bloc/base_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'juice_event.dart';
 part 'juice_state.dart';
 
-class JuiceBloc extends Bloc<JuiceEvent, JuiceState> {
+class JuiceBloc extends BaseBloc<JuiceEvent, JuiceState> {
   JuiceBloc()
       : super(JuiceState(
           items: [],

@@ -1,6 +1,6 @@
 part of 'ice_cream_bloc.dart';
 
-class IceCreamState {
+class IceCreamState extends BaseState {
   final List<MenuItem> items;
 
   IceCreamState({

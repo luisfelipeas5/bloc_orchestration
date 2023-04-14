@@ -1,6 +1,6 @@
 part of 'juice_bloc.dart';
 
-class JuiceState {
+class JuiceState extends BaseState {
   final List<MenuItem> items;
 
   JuiceState({

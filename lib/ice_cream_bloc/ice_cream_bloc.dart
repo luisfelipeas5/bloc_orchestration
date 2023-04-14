@@ -1,13 +1,14 @@
 import 'dart:async';
 
 import 'package:bloc_orchestration/menu_item.dart';
+import 'package:bloc_orchestration/base_bloc/base_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'ice_cream_event.dart';
 part 'ice_cream_state.dart';
 
-class IceCreamBloc extends Bloc<IceCreamEvent, IceCreamState> {
+class IceCreamBloc extends BaseBloc<IceCreamEvent, IceCreamState> {
   IceCreamBloc()
       : super(IceCreamState(
           items: [],
