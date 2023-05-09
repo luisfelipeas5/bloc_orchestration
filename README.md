@@ -1,4 +1,4 @@
-# bloc_orchestration
+# bloc_add_sync
 
 Repositório dedicado a resolver problemas de orquestramento de BLoCs.
 
