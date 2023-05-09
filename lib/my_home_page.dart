@@ -1,5 +1,4 @@
-import 'dart:async';
-
+import 'package:bloc_orchestration/completer_event_mixin.dart';
 import 'package:bloc_orchestration/ice_cream_bloc/ice_cream_bloc.dart';
 import 'package:bloc_orchestration/juice_bloc/juice_bloc.dart';
 import 'package:bloc_orchestration/menu_item_list.dart';
@@ -27,16 +26,8 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _loadMenuItems() async {
-    final juiceLoadCompleter = Completer();
-    _juiceBloc.add(JuiceLoadEvent(
-      consumptionCompleter: juiceLoadCompleter,
-    ));
-    final iceCreamLoadCompleter = Completer();
-    _iceCreamBloc.add(IceCreamLoadEvent(
-      consumptionCompleter: iceCreamLoadCompleter,
-    ));
-    await juiceLoadCompleter.future;
-    await iceCreamLoadCompleter.future;
+    await _juiceBloc.addSync(JuiceLoadEvent());
+    await _iceCreamBloc.addSync(IceCreamLoadEvent());
     _showEmptyWarningToast();
   }
 

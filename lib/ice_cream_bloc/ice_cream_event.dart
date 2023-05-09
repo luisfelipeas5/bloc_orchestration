@@ -5,10 +5,6 @@ abstract class IceCreamEvent extends Equatable {
   List<Object?> get props => [];
 }
 
-class IceCreamLoadEvent extends IceCreamEvent {
-  final Completer consumptionCompleter;
-
-  IceCreamLoadEvent({
-    required this.consumptionCompleter,
-  });
+class IceCreamLoadEvent extends IceCreamEvent with CompleterEventMixin {
+  IceCreamLoadEvent();
 }
