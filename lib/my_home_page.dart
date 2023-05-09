@@ -26,8 +26,10 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _loadMenuItems() async {
-    await _juiceBloc.addSync(JuiceLoadEvent());
-    await _iceCreamBloc.addSync(IceCreamLoadEvent());
+    await Future.wait<dynamic>([
+      _juiceBloc.addSync(JuiceLoadEvent()),
+      _iceCreamBloc.addSync(IceCreamLoadEvent()),
+    ]);
     _showEmptyWarningToast();
   }
 
