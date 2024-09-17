@@ -5,4 +5,10 @@ abstract class JuiceEvent extends Equatable {
   List<Object?> get props => [];
 }
 
-class JuiceLoadEvent extends JuiceEvent {}
+class JuiceLoadEvent extends JuiceEvent {
+  final Completer consumptionCompleter;
+
+  JuiceLoadEvent({
+    required this.consumptionCompleter,
+  });
+}

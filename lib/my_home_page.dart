@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bloc_orchestration/ice_cream_bloc/ice_cream_bloc.dart';
 import 'package:bloc_orchestration/juice_bloc/juice_bloc.dart';
 import 'package:bloc_orchestration/menu_item_list.dart';
@@ -25,8 +27,17 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _loadMenuItems() async {
-    _juiceBloc.add(JuiceLoadEvent());
-    _iceCreamBloc.add(IceCreamLoadEvent());
+    final juiceLoadCompleter = Completer();
+    _juiceBloc.add(JuiceLoadEvent(
+      consumptionCompleter: juiceLoadCompleter,
+    ));
+    final iceCreamLoadCompleter = Completer();
+    _iceCreamBloc.add(IceCreamLoadEvent(
+      consumptionCompleter: iceCreamLoadCompleter,
+    ));
+    await juiceLoadCompleter.future;
+    await iceCreamLoadCompleter.future;
+    _showEmptyWarningToast();
   }
 
   @override
@@ -35,29 +46,15 @@ class _MyHomePageState extends State<MyHomePage> {
       create: (context) => _juiceBloc,
       child: BlocProvider<IceCreamBloc>(
         create: (context) => _iceCreamBloc,
-        child: MultiBlocListener(
-          listeners: [
-            _showEmptyWarningToastListener,
-          ],
-          child: SafeArea(
-            child: Scaffold(
-              appBar: AppBar(
-                title: Text(widget.title),
-              ),
-              body: const MenuItemList(),
+        child: SafeArea(
+          child: Scaffold(
+            appBar: AppBar(
+              title: Text(widget.title),
             ),
+            body: const MenuItemList(),
           ),
         ),
       ),
-    );
-  }
-
-  //Show a toast when both juice and ice cream list are empty
-  BlocListener get _showEmptyWarningToastListener {
-    return BlocListener<JuiceBloc, JuiceState>(
-      listener: (context, state) {
-        //TODO
-      },
     );
   }
 
